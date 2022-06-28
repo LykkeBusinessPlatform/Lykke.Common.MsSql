@@ -14,5 +14,13 @@ namespace Lykke.Common.MsSql
         /// Violation of PRIMARY KEY constraint 
         /// </summary>
         public const int PrimaryKeyConstraintViolation = 2627;
+
+        /// <summary>
+        /// If error code means duplicate constraint violation (either key or index)
+        /// </summary>
+        /// <param name="errorCode"></param>
+        /// <returns></returns>
+        public static bool IsDuplicateKeyViolation(int errorCode) =>
+            errorCode == DuplicateIndex || errorCode == PrimaryKeyConstraintViolation;
     }
 }
