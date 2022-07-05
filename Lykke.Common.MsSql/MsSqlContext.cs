@@ -104,9 +104,9 @@ namespace Lykke.Common.MsSql
             if (IsTraceEnabled)
             {
                 var loggerFactory =
-#if (NETCOREAPP3_0 || NETCOREAPP3_1)
+#if (NETCOREAPP3_0 || NETCOREAPP3_1 || NET6_0)
                 LoggerFactory.Create(builder => { builder.AddConsole(); });
-#elif NETSTANDARD2_0
+#elif (NETSTANDARD2_0 || NETSTANDARD2_1)
                 new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
 #else
 #error unknown target framework
@@ -135,8 +135,9 @@ namespace Lykke.Common.MsSql
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, _schema)
                         .CommandTimeout(_commandTimeoutSeconds ?? DefaultCommandTimeout));
             }
-
+#if (NETCOREAPP3_0 || NETCOREAPP3_1 || NETSTANDARD2_0 || NETSTANDARD2_1)
             optionsBuilder.ConfigureWarnings(warnings => warnings.Throw(RelationalEventId.QueryClientEvaluationWarning));
+#endif
 
             OnLykkeConfiguring(optionsBuilder);
 
