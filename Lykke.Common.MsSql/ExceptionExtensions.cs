@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -15,6 +16,18 @@ namespace Lykke.Common.MsSql
         public static bool IsMissingDataException(this DbUpdateConcurrencyException exception)
         {
             return exception.Message.Equals(MissingRowMessage);
-        }   
+        }
+        
+        /// <summary>
+        /// If row already exists in a database table, then returns true.
+        /// </summary>
+        /// <param name="exception"></param>
+        /// <returns></returns>
+        public static bool ValueAlreadyExistsException(this DbUpdateException exception)
+        {
+            return exception.InnerException is SqlException sqlException &&
+                   (sqlException.Number == MsSqlErrorCodes.PrimaryKeyConstraintViolation ||
+                    sqlException.Number == MsSqlErrorCodes.DuplicateIndex);
+        }
     }
 }
