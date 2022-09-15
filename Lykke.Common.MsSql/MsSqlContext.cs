@@ -10,7 +10,6 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Logging.Console;
 
 namespace Lykke.Common.MsSql
 {
@@ -103,14 +102,7 @@ namespace Lykke.Common.MsSql
 
             if (IsTraceEnabled)
             {
-                var loggerFactory =
-#if (NETCOREAPP3_0 || NETCOREAPP3_1 || NET6_0)
-                LoggerFactory.Create(builder => { builder.AddConsole(); });
-#elif (NETSTANDARD2_0 || NETSTANDARD2_1)
-                new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
-#else
-#error unknown target framework
-#endif
+                var loggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
                 optionsBuilder.UseLoggerFactory(loggerFactory);
             }
 
