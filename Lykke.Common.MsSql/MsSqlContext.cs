@@ -105,9 +105,9 @@ namespace Lykke.Common.MsSql
             {
                 var loggerFactory =
 #if (NETCOREAPP3_0 || NETCOREAPP3_1 || NET6_0)
-                LoggerFactory.Create(builder => { builder.AddConsole(); });
+                    LoggerFactory.Create(builder => { builder.AddConsole(); });
 #elif (NETSTANDARD2_0 || NETSTANDARD2_1)
-                new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
+                    new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
 #else
 #error unknown target framework
 #endif
