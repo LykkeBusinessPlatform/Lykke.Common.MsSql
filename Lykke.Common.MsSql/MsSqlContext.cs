@@ -118,6 +118,9 @@ namespace Lykke.Common.MsSql
                 }
                 optionsBuilder = optionsBuilder
                     .UseSqlServer(_connectionString, x => x
+#if (NET6_0_OR_GREATER)
+                        .UseDateOnlyTimeOnly()            
+#endif
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, _schema)
                         .CommandTimeout(_commandTimeoutSeconds ?? DefaultCommandTimeout));
             }
@@ -125,6 +128,9 @@ namespace Lykke.Common.MsSql
             {
                 optionsBuilder = optionsBuilder
                     .UseSqlServer(_dbConnection, x => x
+#if (NET6_0_OR_GREATER)
+                        .UseDateOnlyTimeOnly()            
+#endif
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, _schema)
                         .CommandTimeout(_commandTimeoutSeconds ?? DefaultCommandTimeout));
             }
