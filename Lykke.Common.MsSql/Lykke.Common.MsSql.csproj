@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netcoreapp3.1;netstandard2.0</TargetFrameworks>
+        <TargetFrameworks>net6.0;netcoreapp3.1</TargetFrameworks>
         <LangVersion>latest</LangVersion>
         <PackageId>LykkeBiz.Common.MsSql</PackageId>
         <Version>1.0.0</Version>
@@ -10,37 +10,37 @@
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
-        <PackageReference Include="Autofac" Version="6.4.0" />
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="4.1.0" />
-    </ItemGroup>        
-
-    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
-      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.26" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.26" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.26" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.26" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.26" />
-      <PackageReference Include="Autofac" Version="6.4.0" />
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0"/>
+        <PackageReference Include="Autofac" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1"/>
+        <!-- 
+          The package from Erik added to support new DateOnly type mapping in EF Core.
+          DateOnly and TimeOnly types are not supported by EF Core 6.0.0 and support 
+          is supposed to be added in EF Core 8 only.
+          Links:
+            * https://github.com/dotnet/efcore/issues/24507
+            * https://erikej.github.io/dotnet/sqlclient/2022/11/17/sqlclient-dateonly.html
+            * https://www.nuget.org/packages/ErikEJ.EntityFrameworkCore.SqlServer.DateOnlyTimeOnly
+        -->
+        <PackageReference Include="ErikEJ.EntityFrameworkCore.SqlServer.DateOnlyTimeOnly" Version="6.0.3"/>
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-      <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.26" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.26" />
-      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.26" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.26" />
-      <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.26" />
-      <PackageReference Include="Autofac" Version="6.4.0" />
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.4" />
+    <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="3.1.26"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.26"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.26"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="3.1.26"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="3.1.26"/>
+        <PackageReference Include="Autofac" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="2.1.4"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Falcon.Numerics" Version="0.1.1" />
+        <PackageReference Include="Falcon.Numerics" Version="0.1.1"/>
     </ItemGroup>
 
 </Project>
