@@ -2,11 +2,19 @@
 
     <PropertyGroup>
         <TargetFrameworks>net6.0;netcoreapp3.1</TargetFrameworks>
-        <LangVersion>latest</LangVersion>
+        <LangVersion>8.0</LangVersion>
         <PackageId>LykkeBiz.Common.MsSql</PackageId>
         <Version>1.0.0</Version>
+        <Company>Lykke Business</Company>
+        <Authors>Lykke Business Team</Authors>
+        <Description>Microsoft SQL server EF Core DBContext with Lykke specific</Description>
+        <PackageTags>EFCore, SQL, Lykke</PackageTags>
         <PackageLicenseUrl>https://github.com/LykkeBusinessPlatform/Lykke.Common.MsSql/blob/master/LICENSE</PackageLicenseUrl>
         <PackageProjectUrl>https://github.com/LykkeBusinessPlatform/Lykke.Common.MsSql</PackageProjectUrl>
+    </PropertyGroup>
+    
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
