@@ -118,7 +118,7 @@ namespace Lykke.Common.MsSql
                 }
                 optionsBuilder = optionsBuilder
                     .UseSqlServer(_connectionString, x => x
-#if (NET6_0_OR_GREATER)
+#if (NET6_0_OR_GREATER && !NET8_0_OR_GREATER)
                         .UseDateOnlyTimeOnly()            
 #endif
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, _schema)
@@ -128,7 +128,7 @@ namespace Lykke.Common.MsSql
             {
                 optionsBuilder = optionsBuilder
                     .UseSqlServer(_dbConnection, x => x
-#if (NET6_0_OR_GREATER)
+#if (NET6_0_OR_GREATER && !NET8_0_OR_GREATER)
                         .UseDateOnlyTimeOnly()            
 #endif
                         .MigrationsHistoryTable(HistoryRepository.DefaultTableName, _schema)

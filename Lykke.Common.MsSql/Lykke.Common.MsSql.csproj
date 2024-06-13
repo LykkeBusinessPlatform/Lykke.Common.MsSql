@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFrameworks>net6.0;netcoreapp3.1</TargetFrameworks>
-        <LangVersion>8.0</LangVersion>
+        <TargetFrameworks>net8.0;net6.0;netcoreapp3.1</TargetFrameworks>
         <PackageId>LykkeBiz.Common.MsSql</PackageId>
         <Version>4.2.2</Version>
         <Company>Lykke Business</Company>
@@ -16,6 +15,16 @@
     <PropertyGroup>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    
+    <ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.6"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1"/>
+        <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="8.0.0"/>
+        <PackageReference Include="Autofac" Version="8.0.0"/>
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1"/>
+    </ItemGroup>
 
     <ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
         <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.6"/>
@@ -24,7 +33,7 @@
         <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1"/>
         <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0"/>
         <PackageReference Include="Autofac" Version="6.4.0"/>
-        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.1"/>
+        <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1"/>
         <!-- 
           The package from Erik added to support new DateOnly type mapping in EF Core.
           DateOnly and TimeOnly types are not supported by EF Core 6.0.0 and support 
